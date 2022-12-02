@@ -63,8 +63,8 @@ app = Flask(__name__)
 
 # Modelo Básico o Avanzado
 
-# model = BasicModel(3,1000)
-model = AdvancedModel(3,1000)
+model = BasicModel(3,200)
+# model = AdvancedModel(3,200)
 
 # Endpoint para checar que el server esté prendido
 @app.route('/', methods=['GET'])
@@ -79,8 +79,8 @@ def initial_model():
     height = request.json['height']
 
     global model
-    # model = BasicModel( width, height)
-    model = AdvancedModel( width, height)
+    model = BasicModel( width, height)
+    # model = AdvancedModel( width, height)
 
     #Devolvemos la información del modelo
     return to_json(model.json())
@@ -90,8 +90,8 @@ def initial_model():
 def reset_model():
 
     global model
-    # model = BasicModel()
-    model = AdvancedModel()
+    model = BasicModel()
+    # model = AdvancedModel()
 
     return message_to_json('Reset the model')
 

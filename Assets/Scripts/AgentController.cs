@@ -10,6 +10,7 @@ public class AgentController : MonoBehaviour
    public int unique_id;
    public string position;
    private int modifiedZ;
+   private int carrilInicial;
 
     IEnumerator Start()
     {
@@ -80,13 +81,14 @@ public class AgentController : MonoBehaviour
                 float timeElapsed = 0;
                 float timeToMove = 1f;
 
+                //Si no es el auto que se va a detener se elimina a los dos minutos
                 if (unique_id != 30){
-                    Destroy(gameObject,60);
+                    Destroy(gameObject,120);
                 }
 
                 while (timeElapsed < timeToMove)
                 {
-                    //Movemos nuestro carro a la nuea posición
+                    //Movemos nuestro carro a la nueva posición
                     transform.position = Vector3.Lerp(currentPosition, targetPos, timeElapsed / timeToMove);
                     timeElapsed += Time.deltaTime;
                     yield return null;

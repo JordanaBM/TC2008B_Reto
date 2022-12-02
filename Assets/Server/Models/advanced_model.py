@@ -39,15 +39,16 @@ def get_ids(model):
 
 class AdvancedModel (Model):
     def __init__(self, width, height):
-        self.num_agents = 300
+        # Variables del modelo
+        self.num_agents = 100
         self.c_agents = 0
         self.grid = SingleGrid(width, height, False)
         self.schedule = BaseScheduler(self)
         self.datacollector = DataCollector(model_reporters = {"Grid" : get_grid})
-        self.stop_distance = 20
+        self.stop_distance = 10
         self.kill_agent = []
 
-        #Creación de agentes y posicionamiento en grid
+        # Creación de agentes y posicionamiento en grid
         x = np.random.choice([0, 1, 2])
         a = AdvancedAgent(0, self, x, 0)
         self.grid.place_agent(a, (x, 0))
@@ -69,7 +70,7 @@ class AdvancedModel (Model):
         self.schedule.add(a)
         self.c_agents += 1
 
-      # Destruimos a los agentes que estan fuero de los límites
+      # Destruimos a los agentes que estan fuera de los límites
       for agent in self.kill_agent:
         self.schedule.remove(agent)
                 

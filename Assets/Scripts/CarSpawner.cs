@@ -20,11 +20,10 @@ public class CarSpawner : MonoBehaviour
 
     void InstantiateCar(){
 
-        // AgentController hinge = gameObject.GetComponent( typeof(AgentController) ) as AgentController;
-
-                  
+        //Creamos un nuevo objeto con nuestro prefab de auto                  
         GameObject CARRITO = Instantiate(autoPrefab0, new Vector3(0, 0.0f, 0), Quaternion.identity);
 
+        //Le agregamos un id único
         CARRITO.GetComponent<AgentController>().unique_id = id;
 
         id++;
