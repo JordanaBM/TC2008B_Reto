@@ -10,7 +10,7 @@
 
 1. Comando para instalar Flask **$ pip install Flask**
 2. En la terminal debes de estar en la carpeta de Server  **cd/Server**
-3. Para inicializar el servidor ** python -m flask --app server run**
+3. Para inicializar el servidor  **python -m flask --app server run**
 4. Entra a **http://localhost:5000** para verificar que esté corriendo el servidor
 
 ## Para iniciar la simulación en Unity
