@@ -5,7 +5,7 @@ from mesa.space import SingleGrid
 from converter import list_to_json
 
 # Import Agents for the Model Street
-from agents import SimulationAgent
+from Models.basic_agent import BasicAgent
 from mesa.datacollection import DataCollector
 
 
@@ -38,23 +38,21 @@ def get_ids(model):
       grid[x][y] = content.unique_id
   return grid
 
-class SimulationModel (Model):
+class BasicModel (Model):
     def __init__(self, width = 3, height = 1000):
         self.num_agents = 300
         self.c_agents = 0
         self.width = width
-        # 1000 meters divided by 5 meters of car size
-        self.height = height/5
         self.grid = SingleGrid(width, height, False)
         self.schedule = BaseScheduler(self)
-        self.stop_distance = 10
+        self.stop_distance = 25
         self.kill_agent = []
         self.step_count = 0
         self.datacollector = DataCollector(model_reporters = {"Grid" : get_grid})
 
         #Creación de agentes y posicionamiento en grid
         x = np.random.choice([0, 1, 2])
-        a = SimulationAgent(0, self, x, 0)
+        a = BasicAgent(0, self, x, 0)
         self.grid.place_agent(a, (x, 0))
         self.schedule.add(a)
         self.c_agents += 1
@@ -71,7 +69,7 @@ class SimulationModel (Model):
       # Agregamos agente si no se ha llegado al límite de agentes
       if self.c_agents < self.num_agents and self.c_agents >= 1:
         x = np.random.choice([0, 1, 2])
-        a = SimulationAgent(self.c_agents, self, x, 0)
+        a = BasicAgent(self.c_agents, self, x, 0)
         self.grid.place_agent(a, (x, 0))
         self.schedule.add(a)
         self.c_agents += 1

@@ -11,7 +11,7 @@ using UnityEngine.Networking;
 
 public class WebClient : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // Invocamos el get data cada segundo
     IEnumerator Start()
     {
         Invoke("GetData", 0.3f);
@@ -27,21 +27,20 @@ public class WebClient : MonoBehaviour
     }
     
     IEnumerator GetDataCoroutine(){
-        // Wait 5 seconds before doing a request
+
+        //Cada segundo estará realizando un step de la simulación
         string url = "http://localhost:5000/step";
         using (UnityWebRequest www = UnityWebRequest.Get(url))
         {
-            // Wait 1 second
             yield return www.SendWebRequest();
             if(www.isNetworkError || www.isHttpError)
             {
                 Debug.Log(www.error);
-                // text.text = www.error;
             }
             else
             {
-                Debug.Log(www.downloadHandler.text);
-                // text.text = www.downloadHandler.text;
+                //Aquí está el print de como llegan todas nuestras posiciones
+                //Debug.Log(www.downloadHandler.text);
             }
         }
     }
